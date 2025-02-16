@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'homescreen.dart';
 import 'loginscreen.dart';
 import 'welcomserrn.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen()
+        home: Homescreen()
     );
   }
 }
