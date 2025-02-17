@@ -1,10 +1,10 @@
 
 
-import 'package:ecommerce_64/profilescreen.dart';
-import 'package:ecommerce_64/searchscreen.dart';
+import 'package:ecommerce_64/Ui_ecom/profilescreen.dart';
+import 'package:ecommerce_64/Ui_ecom/searchscreen.dart';
 import 'package:flutter/material.dart';
 
-import 'cartScreen.dart';
+import '../uiHome/cartScreen.dart';
 import 'homeWidget.dart';
 
 class Homescreen extends StatefulWidget {
