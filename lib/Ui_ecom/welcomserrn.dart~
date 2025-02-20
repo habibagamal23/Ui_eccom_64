@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'loginscreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               onPressed: () {
                 //navigate to login screen
-                Navigator.pushNamed(context, "/login");
+                Navigator.push(context , MaterialPageRoute(builder: (context)=> LoginScreen()));
               },
               child: Text(
                 "Let's Explore",

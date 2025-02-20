@@ -27,7 +27,7 @@ class ProductScreen extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ProductDetailScreen(
                     imageUrl: products[index],
-                    tag: 'image_$index',
+                    tag: 'image_$index', // Unique tag for each image
                   ),
                 ),
               );
@@ -46,6 +46,7 @@ class ProductScreen extends StatelessWidget {
   }
 }
 
+// 📌 Product Detail Screen
 class ProductDetailScreen extends StatelessWidget {
   final String imageUrl;
   final String tag;
@@ -60,11 +61,10 @@ class ProductDetailScreen extends StatelessWidget {
       body: Center(
         child: GestureDetector(
           onTap: () {
-            Navigator.pop(context);
-
+            Navigator.pop(context); // Ensure it pops with Hero animation
           },
           child: Hero(
-            tag: tag,
+            tag: tag, // Consistent Hero tag
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(imageUrl, width: 300, height: 300),

@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+
+class FoodModel {
+  String name;
+  String image;
+  double price;
+  String description;
+  FoodModel(this.name, this.image, this.price, this.description);
+}
+
+class Foodpruduct extends StatelessWidget {
+  const Foodpruduct({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var myfood = [
+      FoodModel(
+        'Pizza',
+        "assets/logo.jpg",
+        15.0,
+        'This is a delicious pizza with tomato sauce, mozzarella, and fresh basil.',
+      ),
+      FoodModel(
+        'Burger',
+        "assets/logo.jpg",
+        10.0,
+        'A tasty burger with beef, lettuce, tomatoes, and cheese.',
+      ),
+      FoodModel(
+        'Burger',
+        "assets/logo.jpg",
+        10.0,
+        'A tasty burger with beef, lettuce, tomatoes, and cheese.',
+      ),
+    ];
+
+    return Scaffold(
+        body: GridView.builder(
+            itemCount: myfood.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.lightBlueAccent,
+                  height: 100,
+                  child: Column(children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailsFood(myfood[index])));
+                        },
+                        child: Image.asset(myfood[index].image)),
+                    Text(myfood[index].name),
+                    Text(myfood[index].price.toString()),
+                  ]),
+                ),
+              );
+            }));
+  }
+}
+
+class DetailsFood extends StatelessWidget {
+  FoodModel foodModel;
+  DetailsFood(this.foodModel);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(children: [
+      Image.asset(foodModel.image),
+      Text(foodModel.description),
+      Text(foodModel.name),
+    ]));
+  }
+}
