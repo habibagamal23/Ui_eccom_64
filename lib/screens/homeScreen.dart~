@@ -1,0 +1,81 @@
+import 'package:ecommerce_64/data/sharedprafarnce.dart';
+import 'package:flutter/material.dart';
+
+import '../data/dbhelper.dart';
+
+class Homescreen extends StatefulWidget {
+  const Homescreen({super.key});
+
+  @override
+  State<Homescreen> createState() => _HomescreenState();
+}
+
+class _HomescreenState extends State<Homescreen> {
+  var userName = "Guest";
+  List<Map<String, dynamic>> mynotes = [];
+
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getusername();
+  }
+  
+  void getusername() {
+    String? usernamefromdb =  LocalDb.getUser();
+    if (usernamefromdb != null) {
+      setState(() {
+        userName = usernamefromdb;
+      });
+    }
+  }
+
+  Future<void> fetchNotes() async {
+    final data = await DatabaseHelper().getAllNotes();
+    setState(() {
+      mynotes = data;
+    });
+  }
+
+  Future<void> _addNote() async {
+    await DatabaseHelper().insertNotes('Static Note', 'This is a predefined note.');
+    fetchNotes(); // Refresh UI
+  }
+
+  Future<void> _deleteNote(int id) async {
+    await DatabaseHelper().deleteNote(id);
+    fetchNotes(); // Refresh UI after deletion
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Welcome $userName"),
+        centerTitle: true,
+      ),
+      body: mynotes.isEmpty
+          ? const Center(child: Text("No Notes Yet"))
+          : ListView.builder(
+        itemCount: mynotes.length,
+        itemBuilder: (context, index) {
+          var note = mynotes[index];
+          return ListTile(
+            title: Text(note['title']),
+            subtitle: Text(note['dec'] ?? ''),
+            trailing: IconButton(
+              icon: const Icon(Icons.delete, color: Colors.red),
+              onPressed: () => _deleteNote(note['id']),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addNote,
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.blueAccent,
+      ),
+    );
+  }
+}

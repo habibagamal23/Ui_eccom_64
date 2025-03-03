@@ -1,12 +1,13 @@
+import 'package:ecommerce_64/screens/LoginScreen.dart';
+import 'package:ecommerce_64/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'Ui_ecom/loginscreen.dart';
-import 'Ui_ecom/splashScreen.dart';
-import 'Ui_ecom/welcomserrn.dart';
-import 'navigation/foodPruduct.dart';
-import 'navigation/productsScreen.dart';
+import 'data/sharedprafarnce.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await LocalDb.StartSherd();
+  checkIsLogin();
   runApp(MyApp());
 }
 
@@ -14,14 +15,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        "/welcome": (context) => WelcomeScreen(),
-        "/login": (context) => LoginScreen()
-        ,
-        "/splash": (context) => Foodpruduct()
-      },
-      initialRoute: "/splash",
-    );
+        debugShowCheckedModeBanner: false,
+        home: isLogged ? Homescreen() : Loginscreen());
+  }
+}
+
+bool isLogged = false;
+void checkIsLogin() async {
+  bool? isture = await LocalDb.getIsLogin();
+  if (isture != null) {
+    isLogged = true;
+  } else {
+    isLogged = false;
   }
 }
