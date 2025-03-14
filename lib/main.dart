@@ -1,33 +1,18 @@
-import 'package:ecommerce_64/theme_cubit.dart';
+import 'package:ecommerce_64/conter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-
-import 'counter_cubit.dart';
 
 void main() {
-  runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => CounterCubit()),
-        BlocProvider(create: (context) => ThemeCubit()),
-      ],
-      child: MyApp(),
-    ),
-  );
+  runApp(BlocProvider(
+      create: (_) => ConterCubit(),
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ThemeCubit, ThemeState>(
-      builder: (context, state) {
-        return MaterialApp(
-          title: 'Theme Switcher',
-          theme: state.themeData,
-          home: HomeScreen(),
-        );
-      },
+    return MaterialApp(
+      home: HomeScreen(),
     );
   }
 }
@@ -36,45 +21,43 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Counter & Theme Switcher")),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Counter Section
-          BlocBuilder<CounterCubit, CounterState>(
-            builder: (context, state) {
-              return Text(
-                "Counter: ${state.count}",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              );
-            },
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FloatingActionButton(
-                onPressed: () => context.read<CounterCubit>().increment(),
-                child: Icon(Icons.add),
-              ),
-              SizedBox(width: 20),
-              FloatingActionButton(
-                onPressed: () => context.read<CounterCubit>().decrement(),
-                child: Icon(Icons.remove),
-              ),
-            ],
-          ),
-          SizedBox(height: 40),
+        appBar: AppBar(title: Text("Counter")),
+        body: Column(
+          children: [
+            BlocBuilder<ConterCubit, ConterState>(
+                builder: (context, state) {
+                  return Text("conter ${state.counter}");
+                }
+            ),
+            ElevatedButton(onPressed: () {
+              context.read<ConterCubit>().increment();
+            }
+                , child: Text("+")),
 
-          BlocBuilder<ThemeCubit, ThemeState>(
+            ElevatedButton(onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SecScreen()));
+            }, child: Text("go"))
+          ],
+        )
+    );
+  }
+}
+
+
+class SecScreen extends StatelessWidget {
+  const SecScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          BlocBuilder<ConterCubit, ConterState>(
             builder: (context, state) {
-              return SwitchListTile(
-                title: Text("Dark Mode"),
-                value: state.isDarkMode,
-                onChanged: (value) => context.read<ThemeCubit>().toggleTheme(),
-              );
+              return Text("conter ${state.counter}");
             },
-          ),
+          )
         ],
       ),
     );
