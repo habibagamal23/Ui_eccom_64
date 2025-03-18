@@ -15,6 +15,14 @@ class ConterCubit extends Cubit<ConterState> {
   }
 
 
-
-
 }
+
+/*
+ana hshr7 m3ahom awl haga structure
+1- m7tzgz z7der sora lihom
+2- them by cubit
+3-imagebicker
+4- textfeild
+
+eli b3d kda  model , cubit , home screen , go router f l akher
+ */

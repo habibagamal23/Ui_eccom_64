@@ -1,0 +1,35 @@
+
+
+
+import 'package:go_router/go_router.dart';
+
+import '../../home/presentation/pages/home_screen.dart';
+import '../../login/presentation/pages/login_screen.dart';
+
+
+
+class AppRouterConstant {
+  static const String splash = '/';
+  static const String home = '/home';
+  static const String login = '/login';
+}
+
+class AppRouter {
+
+  static final   GoRouter router = GoRouter(
+    initialLocation: AppRouterConstant.login,
+    routes: [
+
+      GoRoute(
+        path: AppRouterConstant.login,
+        builder: (context, state) =>LoginScreen()
+      ),
+      GoRoute(
+        path:AppRouterConstant.home,
+        builder: (context, state) {
+          return const HomeScreen();
+        },
+      ),
+    ],
+  );
+}
