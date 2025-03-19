@@ -9,15 +9,25 @@ class Assets {
   static const String conterCubitConterCubit = 'lib/logic/conterCubit/conter_cubit.dart';
   static const String conterCubitConterState = 'lib/logic/conterCubit/conter_state.dart';
   static const String coreRouterApprouter = 'lib/core/router/approuter.dart~';
+  static const String dataTarns = 'lib/data/tarns.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
+  static const String homecubitHomeCubit = 'lib/logic/homecubit/home_cubit.dart';
+  static const String homecubitHomeState = 'lib/logic/homecubit/home_state.dart';
   static const String libMain = 'lib/main.dart';
+  static const String logincubitLoginCubit = 'lib/logic/logincubit/login_cubit.dart';
+  static const String logincubitLoginState = 'lib/logic/logincubit/login_state.dart';
   static const String routerApprouter = 'lib/core/router/approuter.dart';
+  static const String screensHo = 'lib/screens/ho.dart';
   static const String screensHomescreen = 'lib/screens/Homescreen.dart';
+  static const String screensLoginscreen = 'lib/screens/Loginscreen.dart';
   static const String sharedPrafranceHelper = 'lib/core/sharedPrafrance/helper.dart';
   static const String themeTheme = 'lib/core/theme/Theme.dart';
   static const String themecubitThemeCubit = 'lib/logic/themecubit/theme_cubit.dart';
   static const String themecubitThemeState = 'lib/logic/themecubit/theme_state.dart';
+  static const String widgetsChooseImage = 'lib/screens/widgets/ChooseImage.dart';
   static const String widgetsHomeBody = 'lib/screens/widgets/homeBody.dart';
+  static const String widgetsInputfiled = 'lib/screens/widgets/inputfiled.dart';
+  static const String widgetsList = 'lib/screens/widgets/list.dart';
   static const String widgetsSwitchbutton = 'lib/screens/widgets/switchbutton.dart';
 
 }

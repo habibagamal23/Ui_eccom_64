@@ -1,46 +1,25 @@
-import 'package:ecommerce_64/screens/widgets/homeBody.dart';
-import 'package:ecommerce_64/screens/widgets/switchbutton.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../logic/homecubit/home_cubit.dart';
-import '../logic/logincubit/login_cubit.dart';
+import '../../logic/homecubit/home_cubit.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class Homebody extends StatelessWidget {
+  const Homebody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 80,
-        title: BlocBuilder<LoginCubit, LoginState>(
-          builder: (context, state) {
-            return Row(
-              children: [
-                CircleAvatar(
-                  backgroundImage: state.imagePath != null
-                      ? AssetImage(state.imagePath!)
-                      : const AssetImage('assets/default.png'),
-                ),
-                const SizedBox(width: 10),
-                Text("Welcome, ${state.username}"),
-              ],
-            );
-          },
-        ),
-
-      ),
-      body: Homebody(),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          _showAddTransactionDialog(context);
-        },
-      ),
+    return Column(
+      children: [
+        Text("Home Screen"),
+        Text("Home Screen"),
+        Text("Home Screen"),
+        Text("Home Screen"),
+        Text("Home Screen"),
+      ],
     );
   }
-
   void _showAddTransactionDialog(BuildContext context) {
     final TextEditingController categoryController = TextEditingController();
     final TextEditingController amountController = TextEditingController();
